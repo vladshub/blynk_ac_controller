@@ -8,7 +8,7 @@
 
 CC ?= gcc
 CXX ?= g++
-CXXFLAGS += -I ./blynk-library/src/ -I ./blynk-library/linux -DLINUX
+CXXFLAGS += -I./lib/blynk-library/src/ -I./lib/blynk-library/linux -DLINUX
 LDFLAGS += -lrt -lpthread
 
 ifeq ($(build),debug)
@@ -50,12 +50,12 @@ ifeq ($(target),raspberry)
 	LDFLAGS += -lwiringPi
 endif
 
-SOURCES=src/main.cc #\
-#	./blynk-library/src/utility/BlynkDebug.cpp \
-#	./blynk-library/src/utility/BlynkHandlers.cpp \
-#	./blynk-library/src/utility/BlynkTimer.cpp
+SOURCES=src/main.cpp \
+	./lib/blynk-library/src/utility/BlynkDebug.cpp \
+	./lib/blynk-library/src/utility/BlynkHandlers.cpp \
+	./lib/blynk-library/src/utility/BlynkTimer.cpp
 
-OBJECTS=$(SOURCES:.cc=.o)
+OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=blynk
 
 all: $(SOURCES) $(EXECUTABLE)
